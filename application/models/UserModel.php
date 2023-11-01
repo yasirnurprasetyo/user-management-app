@@ -78,4 +78,9 @@ class UserModel extends CI_Model
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function getUsersJson() {
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
 }

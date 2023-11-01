@@ -42,7 +42,8 @@ class User extends CI_Controller
 		$this->load->view("layouts/main", $data);
 	}
 
-	public function ubah($id){
+	public function ubah($id)
+	{
 		$dataUser = $this->UserModel->getByPrimaryKey($id);
 		$data = array(
 			"header" => "User",
@@ -50,7 +51,7 @@ class User extends CI_Controller
 			"users" => $dataUser,
 			"page" => "content/user/v_form_user",
 		);
-		$this->load->view("layouts/main", $data);	
+		$this->load->view("layouts/main", $data);
 	}
 
 	public function proses_simpan()
@@ -106,7 +107,7 @@ class User extends CI_Controller
 				}
 				redirect("user");
 			}
-		// Update
+			// Update
 		} else if (isset($_POST['updates'])) {
 			$id = $this->input->post("id", true);
 			if (@$_FILES['photo']['name'] != null) {
@@ -162,12 +163,24 @@ class User extends CI_Controller
 		}
 	}
 
-	public function proses_hapus($id){
+	public function proses_hapus($id)
+	{
 		$user = $this->UserModel->getByPrimaryKey($id);
-		if($user->photo != null){
-			$filehapus = './upload/images/user'.$user->photo;
+		if ($user->photo != null) {
+			$filehapus = './upload/images/user' . $user->photo;
 			unlink($filehapus);
 		}
 		$this->UserModel->delete($id);
+	}
+
+	public function json_view()
+	{
+		$listUser = $this->UserModel->getAll();
+		$data = array(
+			"header" => "User",
+			"page" => "content/user/v_list_json_user",
+			"users" => $listUser
+		);
+		$this->load->view("layouts/main", $data);
 	}
 }

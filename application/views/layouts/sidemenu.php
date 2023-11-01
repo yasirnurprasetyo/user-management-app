@@ -34,6 +34,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="<?= site_url("user/json_view") ?>" class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>
+                        Json View User
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="<?= site_url("login/logout") ?>" class="nav-link">
                     <i class="nav-icon fas fa-power-off"></i>
                     <p>
