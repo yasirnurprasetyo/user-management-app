@@ -183,4 +183,14 @@ class User extends CI_Controller
 		);
 		$this->load->view("layouts/main", $data);
 	}
+
+	public function detail($id){
+		$dataUser = $this->UserModel->getByPrimaryKey($id);
+		$data = array(
+			"header" => "Detail User",
+			"users" => $dataUser,
+			"page" => "content/user/v_detail_user",
+		);
+		$this->load->view("layouts/main", $data);
+	}
 }

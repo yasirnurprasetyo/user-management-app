@@ -27,14 +27,14 @@
                         <td><?= $row->is_active == "1" ? "Aktif" : "Tidak Aktif" ?></td>
 
                         <td>
-                            <!-- <button data-id="<?= $row->id ?>" class="btn btn-info btn-xs btn-reset-password">
-                                <i class="fas fa-key"></i>
-                            </button> -->
-                            <a href="<?= site_url("user/ubah/$row->id") ?>" class="btn btn-xs btn-warning">
-                                <i class="fas fa-edit"></i>
+                            <a href="<?= site_url("user/detail/$row->id") ?>" class="btn btn-info">
+                                <i class="fas fa-info"></i> Detail
                             </a>
-                            <a href="#" data-id="<?= $row->id ?>" class="btn btn-xs btn-danger tombolHapus">
-                                <i class="fas fa-trash"></i>
+                            <a href="<?= site_url("user/ubah/$row->id") ?>" class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="#" data-id="<?= $row->id ?>" class="btn btn-danger tombolHapus">
+                                <i class="fas fa-trash"></i> Delete
                             </a>
                         </td>
                     </tr>
