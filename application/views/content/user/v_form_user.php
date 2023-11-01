@@ -14,19 +14,19 @@
                 <form id="form-user" enctype="multipart/form-data" role="form" method="post" action="<?= site_url("user/proses_simpan") ?>">
                     <div class="form-group">
                         <label for="">No KTP</label>
-                        <input required type="text" id="no_ktp" name="no_ktp" class="form-control" />
+                        <input required type="text" value="<?= $users->no_ktp ?>" id="no_ktp" name="no_ktp" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="">Nama</label>
-                        <input required type="text" name="name" id="name" class="form-control" />
+                        <input required type="text" name="name" value="<?= $users->name ?>" id="name" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input required type="email" name="email" id="email" class="form-control" />
+                        <input required type="email" name="email" value="<?= $users->email ?>" id="email" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input required type="password" name="password" id="password" class="form-control" />
+                        <input required type="password" name="password" value="<?= $users->password ?>" id="password" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Tangal Lahir</label>
@@ -40,19 +40,19 @@
                     <div class="form-group">
                         <label for="">Jenis Kelamin</label>
                         <select name="gender" id="gender" class="form-control">
-                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                            <option value="<?= $users->gender ?>" <?= $users->gender != null ? "selected" : "Pilih Jenis Kelamin" ?>> <?= $users->gender != null ? $users->gender : "Pilih Jenis Kelamin" ?> </option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Nomor Telepon</label>
-                        <input required type="text" name="phone" id="gender" class="form-control" />
+                        <input required type="text" name="phone" value="<?= $users->phone ?>" id="gender" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="">Role User</label>
                         <select name="role" id="role" required class="form-control">
-                            <option value="" disabled selected>Pilih Role</option>
+                            <option value="<?= $users->role ?>" <?= $users->role != null ? "selected" : "Pilih Role" ?>> <?= $users->role != null ? $users->role : "Pilih Role" ?> </option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
                         </select>
@@ -61,7 +61,7 @@
                         <label for="photo">Photo</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" name="photo" class="custom-file-input" id="photo">
+                                <input type="file" value="<?= $users->photo ?>" name="photo" class="custom-file-input" id="photo">
                                 <label class="custom-file-label" for="photo">Choose file</label>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                         <button id="btn-save-user" type="submit" name="<?= $pages ?>" class="btn btn-primary btn-sm"><i class="fas fa-save"></i>&nbsp;&nbsp;SIMPAN DATA</button>&nbsp;&nbsp;
                         <button id="btn-reset" type="reset" class="btn btn-info btn-sm"><i class="fas fa-undo-alt"></i>&nbsp;&nbsp;RESET DATA</button>
                     </div>
-                    <input type="hidden" id="id" name="id" value="" />
+                    <input type="hidden" id="id" name="id" value="<?= $users->id ?>" />
                 </form>
             </div>
         </div>
@@ -82,7 +82,14 @@
             </div>
             <div class="card-body">
                 <div class="imgWrap">
-                    <img src="<?= base_url(); ?>assets/images/no-image.png" alt="User Avatar" class="card-img-top img-fluid" id="imgView">
+                    <?php if ($pages == "updates") {
+                        if ($users->photo != null) { ?>
+                            <img id="imgView" alt="User Avatar" class="card-img-top img-fluid" src='<?= base_url('upload/images/user/' . $users->photo) ?>' onerror="this.onerror=null;this.src='<?= base_url(); ?>assets/images/no-image.png'" alt="<?= $users->photo ?>">
+                        <?php
+                        }
+                    } else { ?>
+                        <img src="<?= base_url(); ?>assets/images/no-image.png" alt="User Avatar" class="card-img-top img-fluid" id="imgView">
+                    <?php } ?>
                 </div>
             </div>
         </div>

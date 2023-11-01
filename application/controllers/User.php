@@ -41,6 +41,17 @@ class User extends CI_Controller
 		$this->load->view("layouts/main", $data);
 	}
 
+	public function ubah($id){
+		$dataUser = $this->UserModel->getByPrimaryKey($id);
+		$data = array(
+			"header" => "User",
+			"pages" => "updates",
+			"users" => $dataUser,
+			"page" => "content/user/v_form_user",
+		);
+		$this->load->view("layouts/main", $data);	
+	}
+
 	public function proses_simpan()
 	{
 		// Upload gambar
@@ -89,6 +100,59 @@ class User extends CI_Controller
 					"role" => $this->input->post("role")
 				);
 				$this->UserModel->insert($users);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('success', 'Data Sukses disimpan');
+				}
+				redirect("user");
+			}
+		// Update
+		} else if (isset($_POST['updates'])) {
+			$id = $this->input->post("id", true);
+			if (@$_FILES['photo']['name'] != null) {
+				if ($this->upload->do_upload('photo')) {
+					$usr = $this->UserModel->getByPrimaryKey($b['id']);
+					if ($usr->id != null) {
+						$filehapus = './upload/images/user/' . $usr->photo;
+						unlink($filehapus);
+					}
+					$c = $b['photo'] = $this->upload->data('file_name');
+					$users = array(
+						"no_ktp" => $this->input->post("no_ktp"),
+						"name" => $this->input->post("name"),
+						"email" => $this->input->post("email"),
+						"password" => $this->input->post("password"),
+						"phone" => $this->input->post("phone"),
+						"date_birth" => $this->input->post("date_birth"),
+						"gender" => $this->input->post("gender"),
+						"role" => $this->input->post("role"),
+						"photo" => $c
+					);
+					if ($b['photo'] != null) {
+						$users["photo"] = $b["photo"];
+					}
+					$this->UserModel->update($id, $users);
+					if ($this->db->affected_rows() > 0) {
+						$this->session->set_flashdata('success', 'Data Sukses disimpan');
+					}
+					redirect("user");
+				} else {
+					$error = $this->upload->display_errors();
+					$this->session->set_flashdata('error', $error);
+					redirect('user');
+				}
+			} else {
+				$b["phone"] = null;
+				$users = array(
+					"no_ktp" => $this->input->post("no_ktp"),
+					"name" => $this->input->post("name"),
+					"email" => $this->input->post("email"),
+					"password" => $this->input->post("password"),
+					"phone" => $this->input->post("phone"),
+					"date_birth" => $this->input->post("date_birth"),
+					"gender" => $this->input->post("gender"),
+					"role" => $this->input->post("role")
+				);
+				$this->UserModel->update($id, $users);
 				if ($this->db->affected_rows() > 0) {
 					$this->session->set_flashdata('success', 'Data Sukses disimpan');
 				}
