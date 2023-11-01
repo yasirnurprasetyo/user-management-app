@@ -4,7 +4,13 @@ class UserModel extends CI_Model {
 	var $table = "users";
 	var $primaryKey = "id";
 
-    public function insert($data) {
+    public function insertGetId($data)
+	{
+		$this->db->insert($this->table, $data);
+		return $this->db->insert_id();
+	}
+
+	public function insert($data){
 		return $this->db->insert($this->table, $data);
 	}
 

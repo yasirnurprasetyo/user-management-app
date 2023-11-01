@@ -10,6 +10,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Role</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -26,10 +27,10 @@
                         <td><?= $row->is_active == "1" ? "Aktif" : "Tidak Aktif" ?></td>
 
                         <td>
-                            <button data-id="<?= $row->id_user ?>" class="btn btn-info btn-xs btn-reset-password">
+                            <button data-id="<?= $row->id ?>" class="btn btn-info btn-xs btn-reset-password">
                                 <i class="fas fa-key"></i>
                             </button>
-                            <a href="<?= site_url("user/update/$row->id_user") ?>" class="btn btn-xs btn-warning">
+                            <a href="<?= site_url("user/update/$row->id") ?>" class="btn btn-xs btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
@@ -46,53 +47,3 @@
         </a>
     </div>
 </div>
-<script>
-    $(function() {
-        $(".btn-reset-password").on("click", function() {
-            let idUser = $(this).data("id");
-            $.confirm({
-                theme: "material",
-                type: "dark",
-                title: "Konfirmasi",
-                content: "Anda yakin akan mereset password user ini?<br> Password akan dikirim ke email user",
-                buttons: {
-                    buttonOke: {
-                        text: "Reset Password",
-                        btnClass: "btn-dark",
-                        action: function() {
-                            prosesReset(idUser);
-                        }
-                    },
-                    buttonBatal: {
-                        text: "Batal",
-                        btnClass: "btn-info",
-                        action: function() {
-
-                        }
-                    }
-                }
-            });
-        });
-
-        function prosesReset(idUser) {
-            $.LoadingOverlay("show");
-            $.ajax({
-                url: window.base_url + "user/reset_password",
-                type: "post",
-                data: {
-                    id_user: idUser
-                },
-                success: function(result) {
-                    $.LoadingOverlay("hide");
-                    if (result == "1") {
-                        $.alert({
-                            title: "Sukses",
-                            content: "Password Berhasil di reset"
-                        });
-                    }
-
-                }
-            })
-        }
-    });
-</script>
