@@ -29,15 +29,6 @@
                         <input required type="password" name="password" value="<?= $users->password ?>" id="password" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Tangal Lahir</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="">Jenis Kelamin</label>
                         <select name="gender" id="gender" class="form-control">
                             <option value="<?= $users->gender ?>" <?= $users->gender != null ? "selected" : "Pilih Jenis Kelamin" ?>> <?= $users->gender != null ? $users->gender : "Pilih Jenis Kelamin" ?> </option>
@@ -45,6 +36,11 @@
                             <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="date_birth">Tanggal Lahir</label>
+                        <input type="date" name="date_birth" value="<?= $users->date_birth ?>" id="date_birth" class="form-control" />
+                    </div>
+
                     <div class="form-group">
                         <label for="">Nomor Telepon</label>
                         <input required type="text" name="phone" value="<?= $users->phone ?>" id="gender" class="form-control" />

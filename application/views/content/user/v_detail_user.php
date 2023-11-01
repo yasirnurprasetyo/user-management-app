@@ -20,7 +20,7 @@
                     <?php } ?>
                 </div>
                 <h2 class="text-center"><?= $users->name ?></h2>
-                <h3 class="profile-username text-center"><?= $users->date_birth ?></h3>
+                <h3 class="profile-username text-center"><?= date('d-m-Y',strtotime($users->date_birth)) ?></h3>
                 <p class="text-muted text-center"><?= $users->role ?></p>
             </div>
         </div>

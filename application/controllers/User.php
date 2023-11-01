@@ -28,6 +28,7 @@ class User extends CI_Controller
 		$user->no_ktp = null;
 		$user->name = null;
 		$user->password = null;
+		$user->date_birth = null;
 		$user->email = null;
 		$user->gender = null;
 		$user->phone = null;
