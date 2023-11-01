@@ -33,7 +33,7 @@
                             <a href="<?= site_url("user/ubah/$row->id") ?>" class="btn btn-xs btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="#" class="btn btn-xs btn-danger">
+                            <a href="#" data-id="<?= $row->id ?>" class="btn btn-xs btn-danger tombolHapus">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -50,3 +50,83 @@
         </a>
     </div>
 </div>
+<script>
+    $(function() {
+        let idUser = 0;
+        $(".tombolHapus").on("click", function() {
+            var id = $(this).data('id');
+            SwalDelete(id);
+        });
+    })
+
+    function SwalDelete(id) {
+        $.confirm({
+            theme: 'modern',
+            icon: 'fa fa-warning',
+            title: 'Hapus Data!',
+            content: 'Apakah anda yakin hapus data ini ? <br>',
+            // closeIcon: true,
+            boxWidth: '500px',
+            useBootstrap: false,
+            closeIconClass: 'fa fa-close',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                tryAgain: {
+                    text: 'HAPUS',
+                    btnClass: 'btn-red',
+                    action: function() {
+                        var url = "user/proses_hapus/"
+                        $.ajax({
+                                url: '<?= base_url() ?>' + url + id,
+                                type: "POST",
+                            })
+                            .done(function(id) {
+                                $.confirm({
+                                    theme: 'modern',
+                                    icon: 'fa fa-success',
+                                    title: 'Data Terhapus!',
+                                    content: false,
+                                    closeIcon: true,
+                                    boxWidth: '500px',
+                                    useBootstrap: false,
+                                    type: 'blue',
+                                    typeAnimated: true,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'OKE',
+                                            btnClass: 'btn-blue',
+                                            action: function() {
+                                                window.location.replace("<?= site_url("user") ?>");
+                                            }
+                                        },
+                                    }
+                                });
+                            })
+                            .fail(function() {
+                                $.alert({
+                                    theme: 'modern',
+                                    icon: 'fa fa-danger',
+                                    title: 'Data Tidak bisa dihapus!',
+                                    // content: 'Data tersebut telah berelasi dengan tabel lain',
+                                    closeIcon: true,
+                                    boxWidth: '500px',
+                                    useBootstrap: false,
+                                    type: 'red',
+                                    typeAnimated: true,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'OKE',
+                                            btnClass: 'btn-blue',
+                                            action: function() {}
+                                        },
+                                    }
+                                })
+                            });
+                    }
+                },
+                close: function() {}
+            }
+        });
+    }
+</script>

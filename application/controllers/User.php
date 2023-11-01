@@ -24,6 +24,7 @@ class User extends CI_Controller
 	public function tambah()
 	{
 		$user = new stdClass();
+		$user->id = null;
 		$user->no_ktp = null;
 		$user->name = null;
 		$user->password = null;
@@ -159,5 +160,14 @@ class User extends CI_Controller
 				redirect("user");
 			}
 		}
+	}
+
+	public function proses_hapus($id){
+		$user = $this->UserModel->getByPrimaryKey($id);
+		if($user->photo != null){
+			$filehapus = './upload/images/user'.$user->photo;
+			unlink($filehapus);
+		}
+		$this->UserModel->delete($id);
 	}
 }
