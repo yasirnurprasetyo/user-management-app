@@ -186,19 +186,6 @@
 
 	<!-- bs-custom-file-input -->
 	<script src="<?= base_url(); ?>assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-	<!-- Tambahan Ranus -->
-	<script src="<?= base_url(); ?>vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/buttons/js/dataTables.buttons.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/buttons/js/buttons.bootstrap4.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/jszip/jszip.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/pdfmake/pdfmake.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/pdfmake/vfs_fonts.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/buttons/js/buttons.html5.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/buttons/js/buttons.print.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/buttons/js/buttons.colVis.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/responsive/js/dataTables.responsive.min.js"></script>
-	<script src="<?= base_url(); ?>vendor/datatables/responsive/js/responsive.bootstrap4.min.js"></script>
 </body>
 
 </html>
