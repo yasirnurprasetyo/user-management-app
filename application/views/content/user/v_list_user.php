@@ -30,12 +30,14 @@
                             <a href="<?= site_url("user/detail/$row->id") ?>" class="btn btn-info">
                                 <i class="fas fa-info"></i> Detail
                             </a>
+                            <?php if ($this->fungsi->user_login()->role == 'admin') { ?>
                             <a href="<?= site_url("user/ubah/$row->id") ?>" class="btn btn-warning">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                             <a href="#" data-id="<?= $row->id ?>" class="btn btn-danger tombolHapus">
                                 <i class="fas fa-trash"></i> Delete
                             </a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php

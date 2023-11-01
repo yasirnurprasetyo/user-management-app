@@ -59,7 +59,7 @@ class User extends CI_Controller
 		// Upload gambar
 		$config['upload_path'] = './upload/images/user/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
-		$config['max_size'] = '.5000';
+		$config['max_size'] = '.1024';
 		$config['file_name'] = 'user-' . date('ymd') . '-' . substr(md5(rand()), 0, 100000);
 		$this->load->library('upload', $config);
 		$b = $this->input->post(null, TRUE);
