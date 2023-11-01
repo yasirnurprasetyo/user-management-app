@@ -6,7 +6,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model("UserModel");
-		// isLogin();
+		checkOnLogin();
 		date_default_timezone_set('Asia/Jakarta');
 	}
 
@@ -71,7 +71,7 @@ class User extends CI_Controller
 						"no_ktp" => $this->input->post("no_ktp"),
 						"name" => $this->input->post("name"),
 						"email" => $this->input->post("email"),
-						"password" => $this->input->post("password"),
+						"password" => password_hash($this->input->post("password"), PASSWORD_BCRYPT),
 						"phone" => $this->input->post("phone"),
 						"date_birth" => $this->input->post("date_birth"),
 						"gender" => $this->input->post("gender"),
@@ -94,7 +94,7 @@ class User extends CI_Controller
 					"no_ktp" => $this->input->post("no_ktp"),
 					"name" => $this->input->post("name"),
 					"email" => $this->input->post("email"),
-					"password" => $this->input->post("password"),
+					"password" => password_hash($this->input->post("password"), PASSWORD_BCRYPT),
 					"phone" => $this->input->post("phone"),
 					"date_birth" => $this->input->post("date_birth"),
 					"gender" => $this->input->post("gender"),
@@ -121,7 +121,7 @@ class User extends CI_Controller
 						"no_ktp" => $this->input->post("no_ktp"),
 						"name" => $this->input->post("name"),
 						"email" => $this->input->post("email"),
-						"password" => $this->input->post("password"),
+						"password" => password_hash($this->input->post("password"), PASSWORD_BCRYPT),
 						"phone" => $this->input->post("phone"),
 						"date_birth" => $this->input->post("date_birth"),
 						"gender" => $this->input->post("gender"),
@@ -147,7 +147,7 @@ class User extends CI_Controller
 					"no_ktp" => $this->input->post("no_ktp"),
 					"name" => $this->input->post("name"),
 					"email" => $this->input->post("email"),
-					"password" => $this->input->post("password"),
+					"password" => password_hash($this->input->post("password"), PASSWORD_BCRYPT),
 					"phone" => $this->input->post("phone"),
 					"date_birth" => $this->input->post("date_birth"),
 					"gender" => $this->input->post("gender"),

@@ -34,8 +34,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <!-- <a href="<?= site_url("login/logout") ?>" class="nav-link"> -->
-                <a href="#" class="nav-link">
+                <a href="<?= site_url("login/logout") ?>" class="nav-link">
                     <i class="nav-icon fas fa-power-off"></i>
                     <p>
                         Logout
