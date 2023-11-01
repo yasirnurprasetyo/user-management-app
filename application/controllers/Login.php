@@ -22,16 +22,17 @@ class Login extends CI_Controller
         // echo var_dump("user",$user);
         if ($user == null) {
             $this->session->set_flashdata('error', 'Email dan Password anda tidak ditemukan!');
-            // redirect("login");
+            redirect("login");
         } else {
             // Apa yang mau dikirimkan melalui session
             $dataSession = array(
-                "id_data" => $user->id,
-                "name_data" => $user->name,
-                "email_data" => $user->email,
-                "is_active_data" => $user->is_active,
+                "id" => $user->id,
+                "name" => $user->name,
+                "email" => $user->email,
+                "is_active" => $user->is_active,
                 "is_logged_in" => true
             );
+            echo var_dump($dataSession);
             $this->session->set_userdata($dataSession);
             $this->session->set_flashdata('success', 'Selamat datang di K-24  ' . $user->name);
             redirect("user");

@@ -39,7 +39,7 @@ class UserModel extends CI_Model
 		if ($id != null) {
 			$this->db->where('id', $id);
 		}
-		$query = $this->db->get();
+		$query = $this->db->get()->row();
 		return $query;
 	}
 
